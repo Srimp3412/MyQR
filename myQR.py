@@ -46,7 +46,7 @@ def mix_main():
 def text_main():
     frame1 = sg.Frame('', [
         [sg.Text('テキストを入力してください')],
-        [sg.InputText('', key='text')],
+        [sg.Multiline(font=('Arial',11),size=(270,5),key='text')],
         [sg.Text('QRコードの色')],
         [sg.Text('シンボルの形')],
         [sg.Text('セルの形')],
