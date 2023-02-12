@@ -30,8 +30,7 @@ def url_main():
 def mix_main():
     frame1 = sg.Frame('', [
         [sg.Text('最大5つのURLをまとめることができます')],
-        [sg.Text('タイトル')],
-        [sg.InputText('', key='title')],
+        [sg.Combo(('タイトル1','タイトル2','タイトル3','タイトル4','タイトル5'), size=(10,1), key='titleID'), sg.InputText('', key='title')],
         [sg.Text('URLを入力してください')],
         [sg.InputText('', key='url')],
         [sg.Text('QRコードの色')],
