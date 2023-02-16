@@ -13,7 +13,7 @@ def main():
                     [sg.Text('自分用のQRコードを作成できます。\nご利用になる目的に応じてボタンをクリックしてください。')],
                     [sg.Button('URLをQRに', key='urlQR'), sg.Button('まとめてQRに', key='mixQR'), sg.Button('文章をQRに', key='textQR')]]
 
-    return sg.Window('MyOR', main_layout, size=(450, 250))
+    return sg.Window('MyOR', main_layout, size=(500, 300))
 
 # 初期画面
 sg.theme('Dark Brown')
@@ -47,16 +47,32 @@ while True:
         window.close()
         window = textQR.text_main()
 
-    elif event == 'back':
+    elif event == 'back_btn':
         window.close()
         window = main()
     
+    if event == 'color':
+        color = values['color']
+
+    if event == 'qr_size':
+        size = values['qr_size']
+        if size=="大":
+            num = 15
+        elif size=="中":
+            num = 10
+        else:
+            num = 6
+        
     # QRコード作成・保存（ダウンロード）
     if event == 'make_url':
         code = values['url']
-        urlQR.make_url(code)
+        print(color)
+        print(num)
+        urlQR.make_url(code, color, num)
         window['qrimg'].update('urlQR.png')
 
-
-
+    if event == 'make_text':
+        text = values['text']
+        textQR.make_text(text, color, num)
+        window['qrimg'].update('textQR.png')
 window.close()
