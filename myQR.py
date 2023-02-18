@@ -19,14 +19,6 @@ def main():
 sg.theme('Dark Brown')
 window = main()
 
-
-
-
-# QRコード作成関数
-def makeQR(code):
-    qr_img = qr.make(str(code))
-    return qr_img
-
 # イベント
 while True:
     event, values = window.read()
@@ -46,14 +38,16 @@ while True:
     elif event == 'textQR':
         window.close()
         window = textQR.text_main()
-
+    #「戻る」ボタン
     elif event == 'back_btn':
         window.close()
         window = main()
-    
+
+    #「QRコードの色」指定
     if event == 'color':
         color = values['color']
 
+    #「QRコードの大きさ」指定
     if event == 'qr_size':
         size = values['qr_size']
         if size=="大":
@@ -63,7 +57,8 @@ while True:
         else:
             num = 6
         
-    # QRコード作成・保存（ダウンロード）
+    ## QRコード作成・保存（ダウンロード）
+    # urlQRコード作成
     if event == 'make_url':
         code = values['url']
         print(color)
@@ -71,8 +66,12 @@ while True:
         urlQR.make_url(code, color, num)
         window['qrimg'].update('urlQR.png')
 
+    # textQRコード作成
     if event == 'make_text':
         text = values['text']
         textQR.make_text(text, color, num)
         window['qrimg'].update('textQR.png')
+    
+    # mixQRコード作成
+
 window.close()

@@ -20,8 +20,6 @@ def url_main():
 
     return sg.Window('MyQR-URL', url_layout, size=(520, 350))
 
-
-
 # QRコード作成
 def make_url(code, color, num):
         qr = qrcode.QRCode(
