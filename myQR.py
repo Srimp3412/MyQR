@@ -73,5 +73,11 @@ while True:
         window['qrimg'].update('textQR.png')
     
     # mixQRコード作成
+    if event == 'make_mix':
+        code1 = values['url1']
+        code2 = values['url2']
+        code3 = values['url3']
+        mixQR.make_mix(code1, code2, code3, color, num)
+        window['qrimg'].update('mixQR.png')
 
 window.close()
