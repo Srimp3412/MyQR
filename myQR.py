@@ -1,6 +1,7 @@
 import pyqrcode as qr
 import PySimpleGUI as sg
 
+
 # それぞれのファイルをimport
 import urlQR
 import mixQR
@@ -13,7 +14,7 @@ def main():
                     [sg.Text('自分用のQRコードを作成できます。\nご利用になる目的に応じてボタンをクリックしてください。')],
                     [sg.Button('URLをQRに', key='urlQR'), sg.Button('まとめてQRに', key='mixQR'), sg.Button('文章をQRに', key='textQR')]]
 
-    return sg.Window('MyOR', main_layout, size=(500, 300))
+    return sg.Window('MyOR', main_layout, size=(500, 330))
 
 # 初期画面
 sg.theme('Dark Brown')
@@ -56,7 +57,7 @@ while True:
             num = 10
         else:
             num = 6
-        
+    
     ## QRコード作成・保存（ダウンロード）
     # urlQRコード作成
     if event == 'make_url':
