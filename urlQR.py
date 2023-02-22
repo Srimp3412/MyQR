@@ -1,6 +1,5 @@
 import qrcode
 import PySimpleGUI as sg
-from tkinter import messagebox
 
 # 画面設定
 def url_main():
@@ -29,7 +28,6 @@ def make_url(code, color, num):
             box_size=2,
             border=8
         )
-        messagebox.showinfo('確認','QRを制作します。')
         qr.add_data(code)
         qr.make()
         img = qr.make_image(fill_color=color, back_color="white")

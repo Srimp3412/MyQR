@@ -3,6 +3,7 @@ import pyqrcode as qr
 import PySimpleGUI as sg
 import shutil
 import os
+from tkinter import messagebox
 
 # それぞれのファイルをimport
 import urlQR
@@ -19,10 +20,10 @@ def main():
     return sg.Window('MyOR', main_layout, size=(500, 330))
 
 # 初期画面
-sg.theme('Dark Brown')
+sg.theme('LightGrey1')
 window = main()
 
-# イベント
+# イベント処理
 while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED:
@@ -89,17 +90,20 @@ while True:
         download_path = os.path.expanduser("~/Downloads")
         file_path = os.path.join(download_path, "urlQR.png")
         shutil.copyfile("urlQR.png", file_path)
+        messagebox.showinfo('確認','QRを保存しました。')
     
     # mixQRコード保存
     if event == 'download_mix':
         download_path = os.path.expanduser("~/Downloads")
         file_path = os.path.join(download_path, "mixQR.png")
         shutil.copyfile("mixQR.png", file_path)
+        messagebox.showinfo('確認','QRを保存しました。')
     
     # textQRコード保存
     if event == 'download_text':
         download_path = os.path.expanduser("~/Downloads")
         file_path = os.path.join(download_path, "textQR.png")
         shutil.copyfile("textQR.png", file_path)
+        messagebox.showinfo('確認','QRを保存しました。')
 
 window.close()
