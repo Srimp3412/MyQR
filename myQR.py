@@ -15,7 +15,8 @@ import textQR
 def main():
     main_layout = [ [sg.Text('MyQR', font=('Arial',15))],
                     [sg.Text('自分用のQRコードを作成できます。\nご利用になる目的に応じてボタンをクリックしてください。')],
-                    [sg.Button('URLをQRに', key='urlQR'), sg.Button('まとめてQRに', key='mixQR'), sg.Button('文章をQRに', key='textQR')]]
+                    [sg.Button('URLをQRに', image_filename="", key='urlQR'), sg.Button('まとめてQRに', key='mixQR'), sg.Button('文章をQRに', key='textQR')],
+                    [sg.Text('（注意）\n「まとめてQR」、「文章をQR」で生成したQRコードは\n読み取るアプリによって結果が大きく異なります。\nあらかじめご了承ください。')]]
 
     return sg.Window('MyOR', main_layout, size=(500, 330))
 
@@ -65,8 +66,6 @@ while True:
     # urlQRコード作成
     if event == 'make_url':
         code = values['url']
-        print(color)
-        print(num)
         urlQR.make_url(code, color, num)
         window['qrimg'].update('urlQR.png')
 
