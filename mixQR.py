@@ -18,7 +18,7 @@ def mix_main():
     frame2 = sg.Frame('', [
         [sg.Image(size=(210,220), key= 'qrimg')],
         [sg.Button('作成', size=(24,1), key='make_mix')],
-        [sg.Button('ダウンロード\n(PNG形式)', size=(24,2),key='download')]
+        [sg.Button('ダウンロード\n(PNG形式)', size=(24,2),key='download_mix')]
     ], size=(250,330))
     url_layout =  [[frame1,frame2]]
 

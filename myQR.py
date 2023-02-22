@@ -1,6 +1,8 @@
+# モジュールをimport
 import pyqrcode as qr
 import PySimpleGUI as sg
-
+import shutil
+import os
 
 # それぞれのファイルをimport
 import urlQR
@@ -58,7 +60,7 @@ while True:
         else:
             num = 6
     
-    ## QRコード作成・保存（ダウンロード）
+    ## QRコード作成
     # urlQRコード作成
     if event == 'make_url':
         code = values['url']
@@ -80,5 +82,24 @@ while True:
         code3 = values['url3']
         mixQR.make_mix(code1, code2, code3, color, num)
         window['qrimg'].update('mixQR.png')
+    
+    ## QRコードをダウンロードディレクトリに保存する
+    # urlQRコード保存
+    if event == 'download_url':
+        download_path = os.path.expanduser("~/Downloads")
+        file_path = os.path.join(download_path, "urlQR.png")
+        shutil.copyfile("urlQR.png", file_path)
+    
+    # mixQRコード保存
+    if event == 'download_mix':
+        download_path = os.path.expanduser("~/Downloads")
+        file_path = os.path.join(download_path, "mixQR.png")
+        shutil.copyfile("mixQR.png", file_path)
+    
+    # textQRコード保存
+    if event == 'download_text':
+        download_path = os.path.expanduser("~/Downloads")
+        file_path = os.path.join(download_path, "textQR.png")
+        shutil.copyfile("textQR.png", file_path)
 
 window.close()
