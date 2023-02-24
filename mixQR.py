@@ -4,11 +4,11 @@ import PySimpleGUI as sg
 def mix_main():
     frame1 = sg.Frame('', [
         [sg.Text('3つまでのURLをまとめることができます')],
-        [sg.Text('タイトル1')],
+        [sg.Text('リンク1')],
         [sg.Text('URL'), sg.InputText('', key='url1')],
-        [sg.Text('タイトル2')],
+        [sg.Text('リンク2')],
         [sg.Text('URL'), sg.InputText('', key='url2')],
-        [sg.Text('タイトル3')],
+        [sg.Text('リンク3')],
         [sg.Text('URL'), sg.InputText('', key='url3')],
         [sg.Text('- 基本設定 -')],
         [sg.Text('・QRコードの色'), sg.Combo(("Red", "Blue", "Pink", "Green", "Black"), default_value="未選択", size=(8,1), key='color', enable_events=True)],
@@ -32,8 +32,8 @@ def make_mix(code1, code2, code3, color, num):
             box_size=2,
             border=8
         )
-        mix = 'タイトル１\n'+code1+'\nタイトル2\n'+code2+'\nタイトル3\n'+code3
-        qr.add_data(mix)
+        mixLink = 'リンク１'+'\n'+code1+'\n'+'リンク2\n'+code2+'\n'+'リンク3\n'+code3
+        qr.add_data(mixLink)
         qr.make()
         img = qr.make_image(fill_color=color, back_color="white")
         img.save('mixQR.png')
