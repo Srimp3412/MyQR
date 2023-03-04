@@ -1,7 +1,5 @@
 import qrcode
 import PySimpleGUI as sg
-import urllib3
-from tkinter import messagebox
 
 # 画面設定
 def url_main():
@@ -24,19 +22,13 @@ def url_main():
 
 # QRコード作成
 def make_url(code, color, num):
-    qr = qrcode.QRCode(
-        version=num,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=2,
-        border=8
-    )
-    try:
-        check_url = urllib3.urlopen(code)
-        check_url.close()
+        qr = qrcode.QRCode(
+            version=num,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=2,
+            border=8
+        )
         qr.add_data(code)
         qr.make()
         img = qr.make_image(fill_color=color, back_color="white")
         img.save('urlQR.png')
-    except urllib3.error.URLError:
-        messagebox.showinfo('確認','QRを保存しました。')
-    
