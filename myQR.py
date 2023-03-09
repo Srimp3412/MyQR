@@ -1,4 +1,4 @@
-## このファイルを実行してください
+## 【お願い】このファイルを実行して、お使いください。
 
 # モジュールをimport
 import pyqrcode as qr
@@ -12,14 +12,12 @@ import urlQR
 import mixQR
 import textQR
 
-# メイン画面設定
-# それぞれの画面設定は各ファイルに記載
+# メイン画面設定　※それぞれの画面設定は各ファイルに記載
 def main():
     main_layout = [ [sg.Text('MyQR', font=('Arial',15))],
                     [sg.Text('自分用のQRコードを作成できます。\nご利用になる目的に応じてボタンをクリックしてください。')],
                     [sg.Button('URLをQRに', image_filename="", key='urlQR'), sg.Button('まとめてQRに', key='mixQR'), sg.Button('文章をQRに', key='textQR')],
-                    # 必要か？[sg.Text('（注意）\n「まとめてQR」、「文章をQR」で生成したQRコードは\n読み取るアプリによって結果が大きく異なります。\nあらかじめご了承ください。')]
-                    ]
+                ]
 
     return sg.Window('MyOR', main_layout, size=(500, 330))
 
@@ -69,22 +67,28 @@ while True:
     # urlQRコード作成
     if event == 'make_url':
         code = values['url']
+        # URL、色、大きさの情報をurlQRのmake_urlメソッドに渡す
         urlQR.make_url(code, color, num)
+        # 生成されたQRコードをアプリ画面上に表示する
         window['qrimg'].update('urlQR.png')
 
     # textQRコード作成
     if event == 'make_text':
         text = values['text']
+        # テキスト、色、大きさの情報をtextQRのmake_urlメソッドに渡す
         textQR.make_text(text, color, num)
+        # 生成されたQRコードをアプリ画面上に表示する
         window['qrimg'].update('textQR.png')
     
     # mixQRコード作成
     if event == 'make_mix':
+        # 入力されたURLを取得
         code1 = values['url1']
         code2 = values['url2']
         code3 = values['url3']
-
+        # 3つのURL、色、大きさの情報をmixQRのmake_urlメソッドに渡す
         mixQR.make_mix(code1, code2, code3, color, num)
+        # 生成されたQRコードをアプリ画面上に表示する
         window['qrimg'].update('mixQR.png')
     
     ## QRコードをダウンロードディレクトリに保存する
@@ -93,20 +97,29 @@ while True:
     
     # urlQRコード保存
     if event == 'download_url':
+        # 保存先までのpathを指定する
         file_path = os.path.join(download_path, "urlQR.png")
+        # png形式でQRコードを保存
         shutil.copyfile("urlQR.png", file_path)
+        # ユーザーに保存したことを伝える
         messagebox.showinfo('確認','QRを保存しました。')
     
     # mixQRコード保存
     if event == 'download_mix':
+        # 保存先までのpathを指定する
         file_path = os.path.join(download_path, "mixQR.png")
+        # png形式でQRコードを保存
         shutil.copyfile("mixQR.png", file_path)
+        # ユーザーに保存したことを伝える
         messagebox.showinfo('確認','QRを保存しました。')
     
     # textQRコード保存
     if event == 'download_text':
+        # 保存先までのpathを指定する
         file_path = os.path.join(download_path, "textQR.png")
+        # png形式でQRコードを保存
         shutil.copyfile("textQR.png", file_path)
+        # ユーザーに保存したことを伝える
         messagebox.showinfo('確認','QRを保存しました。')
 
 window.close()
