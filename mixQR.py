@@ -23,9 +23,9 @@ def mix_main():
 
     # 画面右側の設定
     frame2 = sg.Frame('', [
-          # 画像を表示する場所
+        # 画像を表示する場所
         [sg.Image(size=(210,220), key= 'qrimg')],
-        # 作成ボタン　クリックするとmake_urlメソッドが起動
+        # 作成ボタン　クリックするとmake_mixメソッドが起動
         [sg.Button('作成', size=(24,1), key='make_mix')],
         # ダウンロードボタン　クリックするとmyQR.pyのdownload_urlメソッドが起動
         [sg.Button('ダウンロード\n(PNG形式)', size=(24,2),key='download_mix')]

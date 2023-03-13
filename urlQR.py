@@ -19,10 +19,14 @@ def url_main():
 
     # 画面右側の設定
     frame2 = sg.Frame('', [
+        # 画像を表示する場所
         [sg.Image(size=(210,220), key= 'qrimg')],
+        # 作成ボタン　クリックするとmake_urlメソッドが起動
         [sg.Button('作成', size=(24,1), key='make_url')],
+        # ダウンロードボタン　クリックするとmyQR.pyのdownload_urlメソッドが起動
         [sg.Button('ダウンロード\n(PNG形式)', size=(24,2),key='download_url')]
     ], size=(250,330))
+    # 画面レイアウト
     url_layout =  [[frame1,frame2]]
 
     return sg.Window('MyQR-URL', url_layout, size=(520, 330))
@@ -35,7 +39,7 @@ def make_url(code, color, num):
             box_size=2,
             border=8
         )
-        qr.add_data(code)
-        qr.make()
-        img = qr.make_image(fill_color=color, back_color="white")
-        img.save('urlQR.png')
+        qr.add_data(code) # URLを追加する
+        qr.make() # QRコード作成
+        img = qr.make_image(fill_color=color, back_color="white") # QRコードの色変換
+        img.save('urlQR.png') #urlQR.pngとして保存
